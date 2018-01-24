@@ -35,6 +35,29 @@ PIFuncs.inject = function(menu)
     menu.strings.profitability = "Profitability"
 end
 
+PIFuncs.buy_price = function(t)
+    if t[1].isplayer then
+        return 0
+    else
+        return t[1].price * t.amount
+    end
+end
+
+PIFuncs.sell_price = function(t)
+    return t[2].price * t.amount
+end
+
+PIFuncs.profitability = function(t)
+    return PIFuncs.sell_price(t) / PIFuncs.buy_price(t)
+end
+
+PIFuncs.deals_profitability = function(a, b)
+    if trade_offers_menu.invertsort then
+        return PIFuncs.profitability(a) < PIFuncs.profitability(b)
+    else
+        return PIFuncs.profitability(a) > PIFuncs.profitability(b)
+    end
+end
 ---------------------------------- Injected -----------------------------------
 PIFuncs.getTradesList = function(menu)
     local trades = {}
@@ -353,6 +376,11 @@ end
 
 PIFuncs.displayMenu = function()
     local menu = trade_offers_menu
+    if menu.mode == "deals" then
+        table.insert(menu.sortnames, menu.strings.profitability)
+        table.insert(menu.sorting, "deals_profitability")
+        menu.sorter.deals_profitability = PIFuncs.deals_profitability
+    end
 
     -- Remove possible button scripts from previous view
     Helper.removeAllButtonScripts(menu)
