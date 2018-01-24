@@ -192,19 +192,23 @@ PIFuncs.dealsRangeFilterRow = function(menu)
     }, nil, {4, 1, 1, 1})
 end
 
+PIFuncs.wareExchangeCargoTypeFilterRow = function(menu)
+    setup:addSimpleRow({
+        menu.strings.categories .. ReadText(1001, 120) .. " ",
+        Helper.createButton(Helper.createButtonText(menu.filternames[1] .. (menu.filter == nil and " *" or ""), "center", Helper.standardFont, Helper.standardFontSize, 255, 255, 255, 100), nil, false, true, 0, 0, 0, 25),
+        Helper.createButton(Helper.createButtonText(menu.filternames[2] .. (menu.filtering[2] == menu.filter and " *" or ""), "center", Helper.standardFont, Helper.standardFontSize, 255, 255, 255, 100), nil, false, true, 0, 0, 0, 25),
+        Helper.createButton(Helper.createButtonText(menu.filternames[3] .. (menu.filtering[3] == menu.filter and " *" or ""), "center", Helper.standardFont, Helper.standardFontSize, 255, 255, 255, 100), nil, false, true, 0, 0, 0, 25),
+        Helper.createButton(Helper.createButtonText(menu.filternames[4] .. (menu.filtering[4] == menu.filter and " *" or ""), "center", Helper.standardFont, Helper.standardFontSize, 255, 255, 255, 100), nil, false, true, 0, 0, 0, 25),
+        Helper.createButton(Helper.createButtonText(menu.filternames[5] .. (menu.filtering[5] == menu.filter and " *" or ""), "center", Helper.standardFont, Helper.standardFontSize, 255, 255, 255, 100), nil, false, true, 0, 0, 0, 25)
+    }, nil, {2, 1, 1, 1, 1, 1})
+end
+
 PIFuncs.tradeOfferTable = function(menu)
     setup = Helper.createTableSetup(menu)
     if menu.mode == "deals" then
         PIFuncs.dealsRangeFilterRow(menu)
     else
-        setup:addSimpleRow({
-            menu.strings.categories .. ReadText(1001, 120) .. " ",
-            Helper.createButton(Helper.createButtonText(menu.filternames[1] .. (menu.filter == nil and " *" or ""), "center", Helper.standardFont, Helper.standardFontSize, 255, 255, 255, 100), nil, false, true, 0, 0, 0, 25),
-            Helper.createButton(Helper.createButtonText(menu.filternames[2] .. (menu.filtering[2] == menu.filter and " *" or ""), "center", Helper.standardFont, Helper.standardFontSize, 255, 255, 255, 100), nil, false, true, 0, 0, 0, 25),
-            Helper.createButton(Helper.createButtonText(menu.filternames[3] .. (menu.filtering[3] == menu.filter and " *" or ""), "center", Helper.standardFont, Helper.standardFontSize, 255, 255, 255, 100), nil, false, true, 0, 0, 0, 25),
-            Helper.createButton(Helper.createButtonText(menu.filternames[4] .. (menu.filtering[4] == menu.filter and " *" or ""), "center", Helper.standardFont, Helper.standardFontSize, 255, 255, 255, 100), nil, false, true, 0, 0, 0, 25),
-            Helper.createButton(Helper.createButtonText(menu.filternames[5] .. (menu.filtering[5] == menu.filter and " *" or ""), "center", Helper.standardFont, Helper.standardFontSize, 255, 255, 255, 100), nil, false, true, 0, 0, 0, 25)
-        }, nil, {2, 1, 1, 1, 1, 1})
+        PIFuncs.wareExchangeCargoTypeFilterRow(menu)
     end
 
     local arrowwidth = 22
