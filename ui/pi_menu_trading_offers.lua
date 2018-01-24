@@ -35,6 +35,7 @@ PIFuncs.inject = function(menu)
     menu.strings.profitability = "Profitability"
 end
 
+---------------------------------- Injected -----------------------------------
 PIFuncs.getTradesList = function(menu)
     local trades = {}
     if menu.mode == "wareexchange" then
