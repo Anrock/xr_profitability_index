@@ -203,6 +203,18 @@ PIFuncs.wareExchangeCargoTypeFilterRow = function(menu)
     }, nil, {2, 1, 1, 1, 1, 1})
 end
 
+PIFuncs.wareExchangeHeaderRow = function(menu)
+    local arrowwidth = 22
+    local arrowheight = 19
+    local arrowoffsety = 2
+
+    setup:addSimpleRow({
+        Helper.createButton(Helper.createButtonText(menu.sortnames[1], "left", Helper.standardFont, Helper.standardFontSize, 255, 255, 255, 100, Helper.standardTextOffsetx), nil, false, true, 0, 0, 0, 25, nil, nil, (menu.sorting[1] == menu.sort) and Helper.createButtonIcon(menu.invertsort and "table_arrow_inv_up" or "table_arrow_inv_down", nil, 255, 255, 255, 100, arrowwidth, arrowheight, GetTextWidth(menu.sortnames[1],  Helper.standardFont, Helper.standardFontSize) + Helper.standardTextOffsetx, arrowoffsety) or nil),
+        Helper.createButton(Helper.createButtonText(menu.sortnames[2], "left", Helper.standardFont, Helper.standardFontSize, 255, 255, 255, 100, Helper.standardTextOffsetx), nil, false, true, 0, 0, 0, 25, nil, nil, (menu.sorting[2] == menu.sort) and Helper.createButtonIcon(menu.invertsort and "table_arrow_inv_down" or "table_arrow_inv_up", nil, 255, 255, 255, 100, arrowwidth, arrowheight, GetTextWidth(menu.sortnames[2],  Helper.standardFont, Helper.standardFontSize) + Helper.standardTextOffsetx, arrowoffsety) or nil),
+        Helper.createButton(Helper.createButtonText(menu.sortnames[3], "left", Helper.standardFont, Helper.standardFontSize, 255, 255, 255, 100, Helper.standardTextOffsetx), nil, false, true, 0, 0, 0, 25, nil, nil, (menu.sorting[3] == menu.sort) and Helper.createButtonIcon(menu.invertsort and "table_arrow_inv_up" or "table_arrow_inv_down", nil, 255, 255, 255, 100, arrowwidth, arrowheight, GetTextWidth(menu.sortnames[3],  Helper.standardFont, Helper.standardFontSize) + Helper.standardTextOffsetx, arrowoffsety) or nil)
+    }, nil, {5, 1, 1})
+end
+
 PIFuncs.tradeOfferTable = function(menu)
     setup = Helper.createTableSetup(menu)
     if menu.mode == "deals" then
@@ -215,11 +227,7 @@ PIFuncs.tradeOfferTable = function(menu)
     local arrowheight = 19
     local arrowoffsety = 2
     if menu.mode == "wareexchange" then
-        setup:addSimpleRow({
-            Helper.createButton(Helper.createButtonText(menu.sortnames[1], "left", Helper.standardFont, Helper.standardFontSize, 255, 255, 255, 100, Helper.standardTextOffsetx), nil, false, true, 0, 0, 0, 25, nil, nil, (menu.sorting[1] == menu.sort) and Helper.createButtonIcon(menu.invertsort and "table_arrow_inv_up" or "table_arrow_inv_down", nil, 255, 255, 255, 100, arrowwidth, arrowheight, GetTextWidth(menu.sortnames[1],  Helper.standardFont, Helper.standardFontSize) + Helper.standardTextOffsetx, arrowoffsety) or nil),
-            Helper.createButton(Helper.createButtonText(menu.sortnames[2], "left", Helper.standardFont, Helper.standardFontSize, 255, 255, 255, 100, Helper.standardTextOffsetx), nil, false, true, 0, 0, 0, 25, nil, nil, (menu.sorting[2] == menu.sort) and Helper.createButtonIcon(menu.invertsort and "table_arrow_inv_down" or "table_arrow_inv_up", nil, 255, 255, 255, 100, arrowwidth, arrowheight, GetTextWidth(menu.sortnames[2],  Helper.standardFont, Helper.standardFontSize) + Helper.standardTextOffsetx, arrowoffsety) or nil),
-            Helper.createButton(Helper.createButtonText(menu.sortnames[3], "left", Helper.standardFont, Helper.standardFontSize, 255, 255, 255, 100, Helper.standardTextOffsetx), nil, false, true, 0, 0, 0, 25, nil, nil, (menu.sorting[3] == menu.sort) and Helper.createButtonIcon(menu.invertsort and "table_arrow_inv_up" or "table_arrow_inv_down", nil, 255, 255, 255, 100, arrowwidth, arrowheight, GetTextWidth(menu.sortnames[3],  Helper.standardFont, Helper.standardFontSize) + Helper.standardTextOffsetx, arrowoffsety) or nil)
-        }, nil, {5, 1, 1})
+        PIFuncs.wareExchangeHeaderRow(menu)
     elseif menu.mode == "deals" then
         setup:addSimpleRow({
             Helper.createButton(Helper.createButtonText(menu.sortnames[1], "left", Helper.standardFont, Helper.standardFontSize, 255, 255, 255, 100, Helper.standardTextOffsetx), nil, false, true, 0, 0, 0, 25, nil, nil, (menu.sorting[1] == menu.sort) and Helper.createButtonIcon(menu.invertsort and "table_arrow_inv_up" or "table_arrow_inv_down", nil, 255, 255, 255, 100, arrowwidth, arrowheight, GetTextWidth(menu.sortnames[1],  Helper.standardFont, Helper.standardFontSize) + Helper.standardTextOffsetx, arrowoffsety) or nil),
