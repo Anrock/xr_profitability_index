@@ -228,6 +228,20 @@ PIFuncs.dealsHeaderRow = function(menu)
     }, nil, {4, 1, 1, 1})
 end
 
+PIFuncs.tradeOffersHeaderRow = function(menu)
+    local arrowwidth = 22
+    local arrowheight = 19
+    local arrowoffsety = 2
+    setup:addSimpleRow({
+        Helper.createButton(Helper.createButtonText(menu.sortnames[1], "left", Helper.standardFont, Helper.standardFontSize, 255, 255, 255, 100, Helper.standardTextOffsetx), nil, false, true, 0, 0, 0, 25, nil, nil, (menu.sorting[1] == menu.sort) and Helper.createButtonIcon(menu.invertsort and "table_arrow_inv_up" or "table_arrow_inv_down", nil, 255, 255, 255, 100, arrowwidth, arrowheight, GetTextWidth(menu.sortnames[1],  Helper.standardFont, Helper.standardFontSize) + Helper.standardTextOffsetx, arrowoffsety) or nil),
+        Helper.createButton(Helper.createButtonText(menu.sortnames[2], "left", Helper.standardFont, Helper.standardFontSize, 255, 255, 255, 100, Helper.standardTextOffsetx), nil, false, true, 0, 0, 0, 25, nil, nil, (menu.sorting[2] == menu.sort) and Helper.createButtonIcon(menu.invertsort and "table_arrow_inv_down" or "table_arrow_inv_up", nil, 255, 255, 255, 100, arrowwidth, arrowheight, GetTextWidth(menu.sortnames[2],  Helper.standardFont, Helper.standardFontSize) + Helper.standardTextOffsetx, arrowoffsety) or nil),
+        Helper.createButton(Helper.createButtonText(menu.sortnames[3], "left", Helper.standardFont, Helper.standardFontSize, 255, 255, 255, 100, Helper.standardTextOffsetx), nil, false, true, 0, 0, 0, 25, nil, nil, (menu.sorting[3] == menu.sort) and Helper.createButtonIcon(menu.invertsort and "table_arrow_inv_down" or "table_arrow_inv_up", nil, 255, 255, 255, 100, arrowwidth, arrowheight, GetTextWidth(menu.sortnames[3],  Helper.standardFont, Helper.standardFontSize) + Helper.standardTextOffsetx, arrowoffsety) or nil),
+        Helper.createButton(Helper.createButtonText(menu.sortnames[4], "left", Helper.standardFont, Helper.standardFontSize, 255, 255, 255, 100, Helper.standardTextOffsetx), nil, false, true, 0, 0, 0, 25, nil, nil, (menu.sorting[4] == menu.sort) and Helper.createButtonIcon(menu.invertsort and "table_arrow_inv_down" or "table_arrow_inv_up", nil, 255, 255, 255, 100, arrowwidth, arrowheight, GetTextWidth(menu.sortnames[4],  Helper.standardFont, Helper.standardFontSize) + Helper.standardTextOffsetx, arrowoffsety) or nil),
+        Helper.createButton(Helper.createButtonText(menu.sortnames[5], "left", Helper.standardFont, Helper.standardFontSize, 255, 255, 255, 100, Helper.standardTextOffsetx), nil, false, true, 0, 0, 0, 25, nil, nil, (menu.sorting[5] == menu.sort) and Helper.createButtonIcon(menu.invertsort and "table_arrow_inv_down" or "table_arrow_inv_up", nil, 255, 255, 255, 100, arrowwidth, arrowheight, GetTextWidth(menu.sortnames[5],  Helper.standardFont, Helper.standardFontSize) + Helper.standardTextOffsetx, arrowoffsety) or nil),
+        Helper.createButton(Helper.createButtonText(menu.sortnames[6], "left", Helper.standardFont, Helper.standardFontSize, 255, 255, 255, 100, Helper.standardTextOffsetx), nil, false, true, 0, 0, 0, 25, nil, nil, (menu.sorting[6] == menu.sort) and Helper.createButtonIcon(menu.invertsort and "table_arrow_inv_down" or "table_arrow_inv_up", nil, 255, 255, 255, 100, arrowwidth, arrowheight, GetTextWidth(menu.sortnames[6],  Helper.standardFont, Helper.standardFontSize) + Helper.standardTextOffsetx, arrowoffsety) or nil)
+    }, nil, {2, 1, 1, 1, 1, 1})
+end
+
 PIFuncs.tradeOfferTable = function(menu)
     setup = Helper.createTableSetup(menu)
     if menu.mode == "deals" then
@@ -236,22 +250,12 @@ PIFuncs.tradeOfferTable = function(menu)
         PIFuncs.wareExchangeCargoTypeFilterRow(menu)
     end
 
-    local arrowwidth = 22
-    local arrowheight = 19
-    local arrowoffsety = 2
     if menu.mode == "wareexchange" then
         PIFuncs.wareExchangeHeaderRow(menu)
     elseif menu.mode == "deals" then
         PIFuncs.dealsHeaderRow(menu)
     else
-        setup:addSimpleRow({
-            Helper.createButton(Helper.createButtonText(menu.sortnames[1], "left", Helper.standardFont, Helper.standardFontSize, 255, 255, 255, 100, Helper.standardTextOffsetx), nil, false, true, 0, 0, 0, 25, nil, nil, (menu.sorting[1] == menu.sort) and Helper.createButtonIcon(menu.invertsort and "table_arrow_inv_up" or "table_arrow_inv_down", nil, 255, 255, 255, 100, arrowwidth, arrowheight, GetTextWidth(menu.sortnames[1],  Helper.standardFont, Helper.standardFontSize) + Helper.standardTextOffsetx, arrowoffsety) or nil),
-            Helper.createButton(Helper.createButtonText(menu.sortnames[2], "left", Helper.standardFont, Helper.standardFontSize, 255, 255, 255, 100, Helper.standardTextOffsetx), nil, false, true, 0, 0, 0, 25, nil, nil, (menu.sorting[2] == menu.sort) and Helper.createButtonIcon(menu.invertsort and "table_arrow_inv_down" or "table_arrow_inv_up", nil, 255, 255, 255, 100, arrowwidth, arrowheight, GetTextWidth(menu.sortnames[2],  Helper.standardFont, Helper.standardFontSize) + Helper.standardTextOffsetx, arrowoffsety) or nil),
-            Helper.createButton(Helper.createButtonText(menu.sortnames[3], "left", Helper.standardFont, Helper.standardFontSize, 255, 255, 255, 100, Helper.standardTextOffsetx), nil, false, true, 0, 0, 0, 25, nil, nil, (menu.sorting[3] == menu.sort) and Helper.createButtonIcon(menu.invertsort and "table_arrow_inv_down" or "table_arrow_inv_up", nil, 255, 255, 255, 100, arrowwidth, arrowheight, GetTextWidth(menu.sortnames[3],  Helper.standardFont, Helper.standardFontSize) + Helper.standardTextOffsetx, arrowoffsety) or nil),
-            Helper.createButton(Helper.createButtonText(menu.sortnames[4], "left", Helper.standardFont, Helper.standardFontSize, 255, 255, 255, 100, Helper.standardTextOffsetx), nil, false, true, 0, 0, 0, 25, nil, nil, (menu.sorting[4] == menu.sort) and Helper.createButtonIcon(menu.invertsort and "table_arrow_inv_down" or "table_arrow_inv_up", nil, 255, 255, 255, 100, arrowwidth, arrowheight, GetTextWidth(menu.sortnames[4],  Helper.standardFont, Helper.standardFontSize) + Helper.standardTextOffsetx, arrowoffsety) or nil),
-            Helper.createButton(Helper.createButtonText(menu.sortnames[5], "left", Helper.standardFont, Helper.standardFontSize, 255, 255, 255, 100, Helper.standardTextOffsetx), nil, false, true, 0, 0, 0, 25, nil, nil, (menu.sorting[5] == menu.sort) and Helper.createButtonIcon(menu.invertsort and "table_arrow_inv_down" or "table_arrow_inv_up", nil, 255, 255, 255, 100, arrowwidth, arrowheight, GetTextWidth(menu.sortnames[5],  Helper.standardFont, Helper.standardFontSize) + Helper.standardTextOffsetx, arrowoffsety) or nil),
-            Helper.createButton(Helper.createButtonText(menu.sortnames[6], "left", Helper.standardFont, Helper.standardFontSize, 255, 255, 255, 100, Helper.standardTextOffsetx), nil, false, true, 0, 0, 0, 25, nil, nil, (menu.sorting[6] == menu.sort) and Helper.createButtonIcon(menu.invertsort and "table_arrow_inv_down" or "table_arrow_inv_up", nil, 255, 255, 255, 100, arrowwidth, arrowheight, GetTextWidth(menu.sortnames[6],  Helper.standardFont, Helper.standardFontSize) + Helper.standardTextOffsetx, arrowoffsety) or nil)
-        }, nil, {2, 1, 1, 1, 1, 1})
+        PIFuncs.tradeOffersHeaderRow(menu)
     end
 
     local nooftrades = 0
@@ -354,9 +358,6 @@ PIFuncs.displayMenu = function()
     Helper.currentTableRow = {}
     Helper.currentTableRowData = nil
     menu.rowDataMap = {}
-
-    -- local variables
-    local emptyFontStringSmall = Helper.createFontString("", false, Helper.standardHalignment, Helper.standardColor.r, Helper.standardColor.g, Helper.standardColor.b, Helper.standardColor.a, Helper.standardFont, 6, false, Helper.headerRow1Offsetx, Helper.headerRow1Offsety, 6)
 
     PIFuncs.getTradesList(menu)
     local shiptabledesc = PIFuncs.shipTable(menu)
