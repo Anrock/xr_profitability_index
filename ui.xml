@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<addon name="Profitability index" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../ui/core/addon.xsd">
+  <environment type="detailmonitor">
+      <file name="ui/pi_menu_trading_offers.lua" />
+      <dependency name="ego_detailmonitor" />
+  </environment>
+</addon>
