@@ -32,6 +32,7 @@ end
 
 PIFuncs.inject = function(menu)
     menu.displayMenu = PIFuncs.displayMenu
+    menu.addDeal = PIFuncs.addDeal
     menu.strings.profitability = "Profitability"
 end
 
@@ -213,7 +214,7 @@ PIFuncs.dealsRangeFilterRow = function(menu)
         Helper.createButton(Helper.createButtonText(menu.filternames[1] .. (menu.filter == nil and " *" or ""), "center", Helper.standardFont, Helper.standardFontSize, 255, 255, 255, 100), nil, false, true, 0, 0, 0, 25),
         Helper.createButton(Helper.createButtonText(menu.filternames[2] .. (menu.filtering[2] == menu.filter and " *" or ""), "center", Helper.standardFont, Helper.standardFontSize, 255, 255, 255, 100), nil, false, true, 0, 0, 0, 25),
         Helper.createButton(Helper.createButtonText(menu.filternames[3] .. (menu.filtering[3] == menu.filter and " *" or ""), "center", Helper.standardFont, Helper.standardFontSize, 255, 255, 255, 100), nil, false, true, 0, 0, 0, 25)
-    }, nil, {4, 1, 1, 1})
+    }, nil, {5, 1, 1, 1})
 end
 
 PIFuncs.wareExchangeCargoTypeFilterRow = function(menu)
@@ -248,8 +249,9 @@ PIFuncs.dealsHeaderRow = function(menu)
         Helper.createButton(Helper.createButtonText(menu.sortnames[1], "left", Helper.standardFont, Helper.standardFontSize, 255, 255, 255, 100, Helper.standardTextOffsetx), nil, false, true, 0, 0, 0, 25, nil, nil, (menu.sorting[1] == menu.sort) and Helper.createButtonIcon(menu.invertsort and "table_arrow_inv_up" or "table_arrow_inv_down", nil, 255, 255, 255, 100, arrowwidth, arrowheight, GetTextWidth(menu.sortnames[1],  Helper.standardFont, Helper.standardFontSize) + Helper.standardTextOffsetx, arrowoffsety) or nil),
         Helper.createButton(Helper.createButtonText(menu.sortnames[2], "left", Helper.standardFont, Helper.standardFontSize, 255, 255, 255, 100, Helper.standardTextOffsetx), nil, false, true, 0, 0, 0, 25, nil, nil, (menu.sorting[2] == menu.sort) and Helper.createButtonIcon(menu.invertsort and "table_arrow_inv_down" or "table_arrow_inv_up", nil, 255, 255, 255, 100, arrowwidth, arrowheight, GetTextWidth(menu.sortnames[2],  Helper.standardFont, Helper.standardFontSize) + Helper.standardTextOffsetx, arrowoffsety) or nil),
         Helper.createButton(Helper.createButtonText(menu.sortnames[3], "left", Helper.standardFont, Helper.standardFontSize, 255, 255, 255, 100, Helper.standardTextOffsetx), nil, false, true, 0, 0, 0, 25, nil, nil, (menu.sorting[3] == menu.sort) and Helper.createButtonIcon(menu.invertsort and "table_arrow_inv_up" or "table_arrow_inv_down", nil, 255, 255, 255, 100, arrowwidth, arrowheight, GetTextWidth(menu.sortnames[3],  Helper.standardFont, Helper.standardFontSize) + Helper.standardTextOffsetx, arrowoffsety) or nil),
-        Helper.createButton(Helper.createButtonText(menu.sortnames[4], "left", Helper.standardFont, Helper.standardFontSize, 255, 255, 255, 100, Helper.standardTextOffsetx), nil, false, true, 0, 0, 0, 25, nil, nil, (menu.sorting[4] == menu.sort) and Helper.createButtonIcon(menu.invertsort and "table_arrow_inv_up" or "table_arrow_inv_down", nil, 255, 255, 255, 100, arrowwidth, arrowheight, GetTextWidth(menu.sortnames[4],  Helper.standardFont, Helper.standardFontSize) + Helper.standardTextOffsetx, arrowoffsety) or nil)
-    }, nil, {4, 1, 1, 1})
+        Helper.createButton(Helper.createButtonText(menu.sortnames[4], "left", Helper.standardFont, Helper.standardFontSize, 255, 255, 255, 100, Helper.standardTextOffsetx), nil, false, true, 0, 0, 0, 25, nil, nil, (menu.sorting[4] == menu.sort) and Helper.createButtonIcon(menu.invertsort and "table_arrow_inv_up" or "table_arrow_inv_down", nil, 255, 255, 255, 100, arrowwidth, arrowheight, GetTextWidth(menu.sortnames[4],  Helper.standardFont, Helper.standardFontSize) + Helper.standardTextOffsetx, arrowoffsety) or nil),
+        Helper.createButton(Helper.createButtonText(menu.sortnames[5], "left", Helper.standardFont, Helper.standardFontSize, 255, 255, 255, 100, Helper.standardTextOffsetx), nil, false, true, 0, 0, 0, 25, nil, nil, (menu.sorting[5] == menu.sort) and Helper.createButtonIcon(menu.invertsort and "table_arrow_inv_up" or "table_arrow_inv_down", nil, 255, 255, 255, 100, arrowwidth, arrowheight, GetTextWidth(menu.sortnames[5],  Helper.standardFont, Helper.standardFontSize) + Helper.standardTextOffsetx, arrowoffsety) or nil)
+    }, nil, {4, 1, 1, 1, 1})
 end
 
 PIFuncs.tradeOffersHeaderRow = function(menu)
@@ -295,7 +297,7 @@ PIFuncs.tradeOfferTable = function(menu)
                     setup:addSimpleRow({
                         Helper.createButton(Helper.createButtonText(menu.extendedwares[deal[1].ware] and "-" or "+", "center", Helper.standardFont, Helper.standardFontSize, 255, 255, 255, 100), nil, false, #menu.tradegroups[deal[1].ware] > 1, 0, 0, 0, Helper.standardTextHeight),
                         deal[1].name
-                    }, nil, {1, 6}, false, Helper.defaultHeaderBackgroundColor)
+                    }, nil, {1, 7}, false, Helper.defaultHeaderBackgroundColor)
                     nooftrades = nooftrades + 1
                 else
                     nooftrades = menu.addDeal(setup, deal, true, nooftrades)
@@ -334,13 +336,25 @@ PIFuncs.tradeOfferTable = function(menu)
             end
         end
     else
-        setup:addSimpleRow({
-            menu.strings.notrades
-        }, nil, {7}, false, menu.grey)
+        if menu.mode == "deals" then
+            setup:addSimpleRow({
+                menu.strings.notrades
+            }, nil, {8}, false, menu.grey)
+        else
+            setup:addSimpleRow({
+                menu.strings.notrades
+            }, nil, {7}, false, menu.grey)
+        end
     end
 
-    setup:addFillRows(12, false, {7})
-    local offertabledesc = setup:createCustomWidthTable({Helper.standardButtonWidth, 0, 100, 100, 100, 130, 130}, false, false, true, 1, 2, 0, 177, 311, true, menu.settoprow or (menu.highlighttraderow > (nooftrades - 10) and (nooftrades - 7) or (menu.highlighttraderow + 2)), menu.highlighttraderow + 2)
+    local offertabledesc
+    if menu.mode == "deals" then
+        setup:addFillRows(12, false, {8})
+        offertabledesc = setup:createCustomWidthTable({Helper.standardButtonWidth, 0, 100, 100, 100, 130, 130, 130}, false, false, true, 1, 2, 0, 177, 311, true, menu.settoprow or (menu.highlighttraderow > (nooftrades - 10) and (nooftrades - 7) or (menu.highlighttraderow + 2)), menu.highlighttraderow + 2)
+    else
+        setup:addFillRows(12, false, {7})
+        offertabledesc = setup:createCustomWidthTable({Helper.standardButtonWidth, 0, 100, 100, 100, 130, 130}, false, false, true, 1, 2, 0, 177, 311, true, menu.settoprow or (menu.highlighttraderow > (nooftrades - 10) and (nooftrades - 7) or (menu.highlighttraderow + 2)), menu.highlighttraderow + 2)
+    end
     menu.settoprow = nil
     return offertabledesc
 end
@@ -406,9 +420,9 @@ PIFuncs.displayMenu = function()
 
     -- offer table
     if menu.mode == "deals" then
-        Helper.setButtonScript(menu, nil, menu.offertable, 1, 5, function () return menu.buttonSetFilter(menu.filtering[1]) end)
-        Helper.setButtonScript(menu, nil, menu.offertable, 1, 6, function () return menu.buttonSetFilter(menu.filtering[2]) end)
-        Helper.setButtonScript(menu, nil, menu.offertable, 1, 7, function () return menu.buttonSetFilter(menu.filtering[3]) end)
+        Helper.setButtonScript(menu, nil, menu.offertable, 1, 6, function () return menu.buttonSetFilter(menu.filtering[1]) end)
+        Helper.setButtonScript(menu, nil, menu.offertable, 1, 7, function () return menu.buttonSetFilter(menu.filtering[2]) end)
+        Helper.setButtonScript(menu, nil, menu.offertable, 1, 8, function () return menu.buttonSetFilter(menu.filtering[3]) end)
     else
         Helper.setButtonScript(menu, nil, menu.offertable, 1, 3, function () return menu.buttonSetFilter(menu.filtering[1]) end)
         Helper.setButtonScript(menu, nil, menu.offertable, 1, 4, function () return menu.buttonSetFilter(menu.filtering[2]) end)
@@ -425,6 +439,7 @@ PIFuncs.displayMenu = function()
         Helper.setButtonScript(menu, nil, menu.offertable, 2, 5, function () return menu.buttonSetSorter(menu.sorting[2]) end)
         Helper.setButtonScript(menu, nil, menu.offertable, 2, 6, function () return menu.buttonSetSorter(menu.sorting[3]) end)
         Helper.setButtonScript(menu, nil, menu.offertable, 2, 7, function () return menu.buttonSetSorter(menu.sorting[4]) end)
+        Helper.setButtonScript(menu, nil, menu.offertable, 2, 8, function () return menu.buttonSetSorter(menu.sorting[5]) end)
     else
         Helper.setButtonScript(menu, nil, menu.offertable, 2, 3, function () return menu.buttonSetSorter(menu.sorting[2]) end)
         Helper.setButtonScript(menu, nil, menu.offertable, 2, 4, function () return menu.buttonSetSorter(menu.sorting[3]) end)
@@ -462,6 +477,35 @@ PIFuncs.displayMenu = function()
 
     -- clear descriptors again
     Helper.releaseDescriptors()
+end
+
+PIFuncs.addDeal = function(setup, deal, isfirst, nooftrades)
+    local menu = trade_offers_menu
+
+	nooftrades = nooftrades + 1
+	if IsSameTrade(deal[1].id, menu.tradeid) then
+		menu.highlighttraderow = nooftrades
+	end
+	local sector = menu.getShipSector()
+	local gates, jumps = FindJumpRoute(sector, deal[1].stationsectorid)
+	local gates2, jumps2 = FindJumpRoute(deal[1].stationsectorid, deal[2].stationsectorid)
+	gates = gates + gates2
+	jumps = jumps + jumps2
+
+	local isplayer = deal[1].isplayer
+	local isillegal = IsWareIllegalTo(deal[1].ware, "player")
+	local textcolor = isplayer and menu.green or (isillegal and menu.orange or menu.white)
+
+	setup:addSimpleRow({
+		isfirst and Helper.createButton(Helper.createButtonText(menu.extendedwares[deal[1].ware] and "-" or "+", "center", Helper.standardFont, Helper.standardFontSize, 255, 255, 255, 100), nil, false, #menu.tradegroups[deal[1].ware] > 1, 0, 0, 0, Helper.standardTextHeight) or "",
+		Helper.createFontString(deal[1].name, false, "left", textcolor.r, textcolor.g, textcolor.b, textcolor.a),
+		Helper.createFontString((gates and jumps) and (gates .. menu.strings.gates .. " - " .. jumps .. menu.strings.jumps) or menu.strings.na, false, "right", textcolor.r, textcolor.g, textcolor.b, textcolor.a),
+		Helper.createFontString((isplayer and "-" or ConvertMoneyString(RoundTotalTradePrice(deal.amount * deal[1].price), false, true, 0, true)) .. menu.strings.cr, false, "right", textcolor.r, textcolor.g, textcolor.b, textcolor.a),
+		Helper.createFontString(ConvertMoneyString(RoundTotalTradePrice(deal.amount * (deal[2].price - (isplayer and 0 or deal[1].price))), false, true, 0, true) .. menu.strings.cr, false, "right", textcolor.r, textcolor.g, textcolor.b, textcolor.a),
+		Helper.createFontString(string.format("%.2f", PIFuncs.profitability(deal)), false, "left", textcolor.r, textcolor.g, textcolor.b, textcolor.a),
+	}, {deal[1].id, deal[2].id}, {1, 3, 1, 1, 1, 1}, false)
+
+	return nooftrades
 end
 
 init()
