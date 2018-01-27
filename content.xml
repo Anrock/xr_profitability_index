@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<content
+    id=""
+    name="Profitability index"
+    description="Adds a Profitability index column to Trade deals menu.&#10;
+Profitability index is calculated by dividing buy price by sell price.&#10;
+This allows to easily estimate investment to profit ratio to choose better deals"
+    version="100"
+    save="false"
+    >
+  <dependency version="400" />
+</content>
